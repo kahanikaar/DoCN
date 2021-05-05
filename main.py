@@ -36,28 +36,32 @@ def scan(image):
     
     
 
+    target=None
     for c in cnts:
         perimeter = cv2.arcLength(c, True)
         polygon = cv2.approxPolyDP(c, APPROX_POLY_DP_ACCURACY_RATIO * perimeter, True)
 
         if len(polygon) == 4:
-            outline = polygon.reshape(4, 2)
-            target=polygon
-   
-    cv2.drawContours(orig, [target], -1, (0, 255, 0), 2)
-    
+            target = polygon
+
+    if target is None:
+       cv2.drawContours(orig, [polygon], -1, (0, 255, 0), 2)
+    else:
+       cv2.drawContours(orig, [target], -1, (0, 255, 0), 2)
+       
     plt.figure(5, figsize=(7,7))
     plt.imshow(orig, cmap='gray')
     plt.show()
-    if outline is None:
-        boudingBox = orig
-        crop=orig1
+    if target is None:
+        boundingBox = orig
+        crop = orig1
+
     else:
         orig = imutils.resize(orig, height=int(IMG_RESIZE_H*ratio))  
-        boundingBox = perspective.four_point_transform(orig, outline*ratio )
-        crop=perspective.four_point_transform(orig1, outline*ratio )
+        boundingBox = perspective.four_point_transform(orig, target.reshape(4,2)*ratio )
+        crop=perspective.four_point_transform(orig1, target.reshape(4,2)*ratio )
     
-
+    
     image=os.path.splitext(os.path.basename(image))[0]
 
     cv2.imwrite("./Outputs/"+image+"_BoundingBox.jpeg", boundingBox)
