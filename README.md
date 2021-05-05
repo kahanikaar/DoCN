@@ -1,5 +1,5 @@
 # DoCN
-Script for Image Document Scanner
+Script for predicting bounding box over page and Image Document Scanner
 
 ### Instructions to use  
 Launch terminal and run the following commands  
@@ -17,8 +17,12 @@ All the Output Images are stored in DoCN/Outputs/ directory.
     opencv-python==4.2.0.34
     imutils==0.5.3
     numpy==1.19.4
+    matplotlib==3.2.1
+    pillow>=8.0.1
+    
 ```
 All libaries to be installed from PyPi.  
   
   
-Script insipred from [docscan](https://github.com/danielgatis/docscan) maintained by [Daniel Gatis](https://github.com/danielgatis)
+  
+Script inspired from [docscan](https://github.com/danielgatis/docscan) maintained by [Daniel Gatis](https://github.com/danielgatis)
