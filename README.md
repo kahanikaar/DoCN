@@ -10,8 +10,14 @@ Launch terminal and run the following commands
     python main.py [Input Image Path]
 ```
 All the Output Images are stored in DoCN/Outputs/ directory.  
+
+
+### Example usage
+```
+      python main.py "test1.jpeg"
+```
   
-## Libraries using
+## Libraries used
 ``` 
     rembg==1.0.16
     opencv-python==4.2.0.34
